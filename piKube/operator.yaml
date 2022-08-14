@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pikube-shinobi
+  namespace: hip
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: pikube-shinobi
+  template:
+    metadata:
+      labels:
+        application: pikube-shinobi
+    spec:
+      serviceAccountName: hip-operator
+      containers:
+        - name: pikube-shinobi
+          image: silvertoken/pikube-shinobi:0.0.1
